@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "640334782364",
+    "project_id": "taskfreelance",
+    "storage_bucket": "taskfreelance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640334782364:android:0a3cb5bc669115249b3259",
+        "android_client_info": {
+          "package_name": "com.yourdomain.your_app_name"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640334782364-mpmrloim9dbac8sf5f07op8lml0fo38o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjCCwKA_81HrPmtRcFLKEN5ov1gFeIjCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640334782364-mpmrloim9dbac8sf5f07op8lml0fo38o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
