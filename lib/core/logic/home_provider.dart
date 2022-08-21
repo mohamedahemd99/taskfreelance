@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -46,5 +48,51 @@ class HomeProvider with ChangeNotifier {
       print(error);
       notifyListeners();
     });
+  }
+
+  bool isEmailVerified = false;
+  bool cancelResentEmail = false;
+  Timer? timer;
+
+  void initVerify(){
+    isEmailVerified =
+        FirebaseAuth.instance.currentUser!.emailVerified;
+    // notifyListeners();
+  }
+  Future checkEmailVerification() async {
+    await FirebaseAuth.instance.currentUser!.reload();
+
+    isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+    notifyListeners();
+    if (isEmailVerified) timer?.cancel();
+  }
+
+  Future sendEmailVerification(BuildContext context) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser!;
+      await user.sendEmailVerification();
+
+      cancelResentEmail = false;
+      notifyListeners();
+
+      await Future.delayed(Duration(seconds: 5));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "check your mail",
+          ),
+        ),
+      );
+      cancelResentEmail = true;
+      notifyListeners();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
   }
 }
