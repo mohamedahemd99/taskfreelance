@@ -20,8 +20,6 @@ class AuthProvider with ChangeNotifier {
       required context}) async {
     await Auth().createUser(email, password).then((user) async {
       CacheHelper.putData(key: "userName", value:userName);
-      print(CacheHelper.getData(key: "userName"));
-      Provider.of<HomeProvider>(context,listen: false).getData();
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) =>  VerifyScreen(),
@@ -34,8 +32,7 @@ class AuthProvider with ChangeNotifier {
           ),
         ),
       );
-      print(user.email);
-      print(user.emailVerified);
+
       notifyListeners();
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(
